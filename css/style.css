@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lato:wght@400;700&family=Roboto&display=swap');
+
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+* { 
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 42px;
+}
+
+#header-title {
+    color: rgba(208, 79, 79, 1);
+    font-size: 36px;
+    font-weight: 700;
+}
+
+/* Main */
+main {
+    margin: 0 8.7%;
+}
+
+/* Tri-Section */
+#search-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 17px;
+}
+
+#searchbar {
+    width: 100%;
+    height: 69px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(231, 231, 231, 1);
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    color: #ACACAC;
+    padding-left: 15px;
+    background-image: url(../../assets/search-solid.svg);
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 99% 50%;
+}
+
+#searchbar:focus-visible {
+    outline: 3px solid #ED6454;
+}
+
+#searchbar::placeholder {
+    opacity: 1;
+}
+
+#search-tags {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    height: 37px;
+}
+
+
+
+/* Recipe-section */
+
+#recipes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.recipeCard {
+    max-width: 380px;
+    max-height: 364px;
+    background-color: rgba(231, 231, 231, 1);
+    border-radius: 5px;
+    margin-bottom: 50px;
+    font-family: "Lato", sans-serif;
+}
+
+.recipe-image {
+    background-color: rgba(199, 190, 190, 1);
+    height: 178px;
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipe-title {
+    font-size: 18px;
+}
+
+.recipe-infos {
+    padding: 20px 20px 15px 20px;
+    
+}
+
+.recipes-details {
+    display: flex;
+}
+.recipes-ing-list {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14.4px;
+}
