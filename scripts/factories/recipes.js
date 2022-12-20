@@ -19,9 +19,11 @@ export default function recipeFactory(data) {
         title.classList.add('recipe-title');
 
         const timeZone = document.createElement('p');
+        timeZone.classList.add('timeZone');
 
         const icon = document.createElement('img');
         icon.setAttribute("src","assets/clock-regular.svg");
+        icon.classList.add('time-icon');
 
         const times = document.createElement('span');
         times.textContent = time + " min";
@@ -36,17 +38,22 @@ export default function recipeFactory(data) {
         details.classList.add('recipes-details');
 
         const ingredList = document.createElement('li');
-        ingredList.classList.add('recipes-ing-list');
+        ingredList.classList.add('ing-list');
 
         ingredients.forEach(item => {
             const ing = document.createElement('ul');
-            ing.textContent = item.ingredient + ": " + item.quantity + " " + item.unit;
+            if(item.unit === undefined){
+                ing.textContent = item.ingredient + ": " + item.quantity;
+            }else{
+                ing.textContent = item.ingredient + ": " + item.quantity + " " + item.unit;
+            }
             ingredList.appendChild(ing);
             ing.classList.add('ing-items');
         });
 
         const desc = document.createElement('p');
         desc.textContent = description;
+        desc.classList.add('recipe-description');
 
         details.appendChild(ingredList);
         details.appendChild(desc);
