@@ -72,19 +72,42 @@ main {
 
 #search-selector {
     margin: 15px 0 25px 0;
+    display: flex;
+    flex-wrap: wrap;
+    
 }
 
-#search-ing {
-    background-color: #3282F7;
+.search-box {
     border-radius: 5px;
     display: flex;
+    padding: 7px;
     height: 69px;
-    align-items: center;
     width: 170px;
     justify-content: space-around;
+    flex-direction: column;
+    z-index: 1;
 }
 
-#input-ing {
+#box-ing {
+    background-color: #3282F7;
+}
+
+#box-app {
+    background-color: #68D9A4;
+    margin-left: 20px;
+}
+
+#box-ust {
+    background-color: #ED6454;
+    margin-left: 20px;
+}
+
+.search-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-box {
     background-color: inherit;
     font-family: "Lato", sans-serif;
     font-weight: 700;
@@ -93,6 +116,7 @@ main {
     width: 130px;
     color: rgba(255, 255, 255, 1);
     border: none;
+    margin-bottom: 3px;
 }
 
 .chevron {
@@ -100,10 +124,28 @@ main {
     height: 28px;
 }
 
-#list-ing {
+.list-box {
     z-index: 1;
-    background-color: #3282F7;
+    margin-top: 10px;
     display: none;
+    flex-wrap: wrap;
+    padding-left: 0;
+    border-radius: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: auto;
+    scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+    scrollbar-width: thin;
+}
+
+.item-list {
+    list-style: none;
+    width: 32%;
+    padding: 5px;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.6px;
 }
 
 /* Recipe-section */
@@ -112,6 +154,11 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: 80px;
+    position: absolute;
+    right: 8.7%;
+    left: 8.7%;
+    top: 35%;
 }
 
 .recipeCard {
@@ -167,10 +214,14 @@ main {
     line-height: 14.4px;
     list-style: none;
     width: 48%;
+
 }
 
 .ing-items {
     padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .recipe-description {

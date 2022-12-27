@@ -17,18 +17,33 @@
                 <input type="text" id="searchbar" placeholder="Rechercher un ingrédient, appareil, ustensile ou recette">
                 <div id="search-tags"></div>
                 <div id="search-selector">
-                    <div id="search-ing">
-                        <input type="text" id="input-ing" placeholder="Ingrédients">
-                        <img src="assets/chevron-down-solid.svg" alt="dropdown-ing" class="chevron">
+                    <div class="search-box" id="box-ing">
+                        <div class="search-controls">
+                            <input type="text" id="input-ing" class="input-box" value="Ingrédients">
+                            <img src="assets/chevron-down-solid.svg" alt="dropdown-ing" class="chevron">
+                        </div>
+                        <ul id="list-ing" class="list-box"></ul>
                     </div>
-                    <div id="list-ing"></div>
+                    <div class="search-box" id="box-app">
+                        <div class="search-controls">
+                            <input type="text" id="input-app" class="input-box" value="Appareils">
+                            <img src="assets/chevron-down-solid.svg" alt="dropdown-app" class="chevron">
+                        </div>
+                        <ul id="list-app" class="list-box"></ul>
+                    </div>
+                    <div class="search-box" id="box-ust">
+                        <div class="search-controls">
+                            <input type="text" id="input-ust" class="input-box" value="Ustensils">
+                            <img src="assets/chevron-down-solid.svg" alt="dropdown-ust" class="chevron">
+                        </div>
+                        <ul id="list-ust" class="list-box"></ul>
+                    </div>
                 </div>
             </section>
-            <section id="recipes-list">
-
-            </section>
+            <section id="recipes-list"></section>
         </main>
         <script type="module" src="scripts/pages/index.js"></script>
+        <script type="module" src="scripts/pages/input-bar.js"></script>
         <script type="module" src="scripts/factories/recipes.js"></script>
     </body>
 </html>
