@@ -13,13 +13,15 @@ const recipeSection = document.getElementById("recipes-list");
 const srcIng = document.getElementById('box-ing');
 const srcApp = document.getElementById('box-app');
 const srcUst = document.getElementById('box-ust');
+const srcBox = document.querySelectorAll('.search-box');
 const inputIngredient = document.getElementById('input-ing');
 const inputAppliances = document.getElementById('input-app');
 const inputUstensils = document.getElementById('input-ust');
-const boxInput = document.querySelector('.input-box');
+const boxInput = document.querySelectorAll('.input-box');
 const listIngredients = document.getElementById('list-ing');
 const listAppliances = document.getElementById('list-app');
 const listUstensils = document.getElementById('list-ust');
+const listTri = document.querySelectorAll('.list-box');
 
 
 export const getRecipes = async() => {
@@ -34,6 +36,9 @@ async function displayRecipes(recipes) {
     
     recipeSection.innerHTML = "";
 
+    let test = recipes.filter((recipe) => recipe.ingredients.includes("coco"));
+    console.log(test); 
+
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const recipeCardDOM = recipeModel.getRecipesCard();
@@ -41,32 +46,44 @@ async function displayRecipes(recipes) {
     });
 }
 
+srcBox.forEach((src) => {
+    src.addEventListener("click", function(){
+        if(src.getAttribute("checked") === "false"){
+            src.setAttribute("checked", "true");
+        }else{
+            src.setAttribute("checked", "false")
+            src.style.width = "170px";
+            src.style.height = "69px";
+        }
+        
+    })
+})
 
 srcIng.addEventListener("click", function(){
-    listIngredients.style.display = "flex";
     srcIng.style.width = "667px";
     srcIng.style.height = "397px";
-    inputIngredient.setAttribute('value','');
     inputIngredient.setAttribute('placeholder','Rechercher un ingrédient');
-    inputIngredient.style.width = "auto"
+    listIngredients.style.display = "flex";
+    inputIngredient.setAttribute('value','');        
+    inputIngredient.style.width = "auto";
 })
 
 srcApp.addEventListener("click", function(){
     listAppliances.style.display = "flex";
     srcApp.style.width = "500px";
     srcApp.style.height = "auto";
-    inputAppliances.setAttribute('value','');
+    boxInput.setAttribute('value','');
     inputAppliances.setAttribute('placeholder','Rechercher un appareil');
-    inputAppliances.style.width = "auto"
+    inputAppliances.style.width = "auto";
 })
 
 srcUst.addEventListener("click", function(){
     listUstensils.style.display = "flex";
     srcUst.style.width = "620px";
     srcUst.style.height = "auto";
-    inputUstensils.setAttribute('value','');
+    boxInput.setAttribute('value','');
     inputUstensils.setAttribute('placeholder','Rechercher un ustensil');
-    inputUstensils.style.width = "auto"
+    inputUstensils.style.width = "auto";
 })
 
 function setIngredientsList(){

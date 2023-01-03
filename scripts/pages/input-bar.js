@@ -109,15 +109,13 @@ function researchInput(data,input) {
         console.log(ingredientsSearch[i]);
     }
     
-    console.log("test");
-    console.log(result);
+    // console.log("test");
+    // console.log(result);
 }
 
 
 async function init(){
     const recipesData = await getRecipes();
-
-    researchInput(recipesData);
 }
 
 init();
