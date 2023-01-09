@@ -80,9 +80,9 @@ main {
 .search-box {
     border-radius: 5px;
     display: flex;
-    padding: 7px;
-    height: 69px;
-    width: 170px;
+    padding: 15px;
+    width: fit-content;
+    height: fit-content;
     justify-content: space-around;
     flex-direction: column;
     z-index: 1;
@@ -90,6 +90,7 @@ main {
 
 #box-ing {
     background-color: #3282F7;
+    
 }
 
 #box-app {
@@ -124,7 +125,7 @@ main {
     height: 28px;
 }
 
-.list-box {
+/* .list-box {
     z-index: 1;
     margin-top: 10px;
     display: none;
@@ -136,11 +137,27 @@ main {
     overflow: auto;
     scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
     scrollbar-width: thin;
+    width: 50%;
+} */
+
+.list-box {
+    z-index: 1;
+    margin-top: 10px;
+    display: none;
+    padding-left: 0;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    overflow: auto;
+    max-height: 400px;
+    max-width: 667px;
+    scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
 }
 
 .item-list {
     list-style: none;
-    width: 32%;
+    width: 33%;
     padding: 5px;
     font-family: "Lato", sans-serif;
     font-weight: 400;
