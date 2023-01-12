@@ -163,6 +163,7 @@ main {
     font-weight: 400;
     font-size: 18px;
     line-height: 21.6px;
+    color: #fff;
 }
 
 /* Recipe-section */
@@ -176,6 +177,11 @@ main {
     right: 8.7%;
     left: 8.7%;
     top: 35%;
+    justify-items: stretch;
+}
+
+.notFound {
+    margin: auto;
 }
 
 .recipeCard {

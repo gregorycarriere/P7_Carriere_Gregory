@@ -5,7 +5,8 @@ import {inputIngredient, inputAppliances, inputUstensils, listIngredients, listA
 
 
 
-const recipeSection = document.getElementById("recipes-list");
+
+export const recipeSection = document.getElementById("recipes-list");
 
 
 export const getRecipes = async() => {
@@ -16,24 +17,23 @@ export const getRecipes = async() => {
 }
 
 
-async function displayRecipes(recipes) {
+export async function displayRecipes(recipes) {
     
     recipeSection.innerHTML = "";
-    
-    // function test(arr,el){
-    //     return arr.filter(el => el.toLowerCase().indexOf(requete.toLowerCase()) !== -1 );  
-    // }  
-    
-    
-    // console.log(test); 
-
-    // ((recipe) => recipe.name.toLowerCase().includes("coco"));
 
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const recipeCardDOM = recipeModel.getRecipesCard();
         recipeSection.appendChild(recipeCardDOM);
     });
+}
+
+function hasIngredient(recipe, tag){
+    if (recipe.ingredients.find(object => object.ingredient.includes(tag.toLowerCase()))){
+        return true
+    }else{
+        return false
+    }
 }
 
 
