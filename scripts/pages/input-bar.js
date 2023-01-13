@@ -79,9 +79,7 @@ function searchInput(recipes) {
 
     result = result.concat(recipes.filter(recipe => recipe.name.toLowerCase().includes(searchQuery)));
     
-    result = result.concat(recipes.filter(recipe => recipe.appliance.toLowerCase().includes(searchQuery)));
-
-    result = result.concat(recipes.filter(recipe => recipe.ustensils.toString().toLowerCase().includes(searchQuery)));
+    result = result.concat(recipes.filter(recipe => recipe.description.toLowerCase().includes(searchQuery)));
 
     let set = new Set(result);
     matchedRecipes = Array.from(set);
@@ -94,11 +92,8 @@ function searchInput(recipes) {
         recipeSection.innerHTML = "";
         recipeSection.appendChild(notFound);
     }else{
-    
         displayRecipes(matchedRecipes);
     }
-
-    
 }
 
 
