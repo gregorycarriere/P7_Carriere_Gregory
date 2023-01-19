@@ -72,19 +72,16 @@ function hasIngredient(recipe, tag){
 
 function searchInput(recipes) {
     let searchQuery = searchbar.value.toLowerCase();
-    let result = [];
     let matchedRecipes = [];
-    
-    result = result.concat(recipes.filter(recipe => hasIngredient(recipe, searchQuery)));
 
-    result = result.concat(recipes.filter(recipe => recipe.name.toLowerCase().includes(searchQuery)));
-    
-    result = result.concat(recipes.filter(recipe => recipe.description.toLowerCase().includes(searchQuery)));
+    recipes.filter((recipe) => {
 
-    let set = new Set(result);
-    matchedRecipes = Array.from(set);
+        if(recipe.ingredients.find(object => object.ingredient.toLowerCase().includes(searchQuery)) || recipe.name.toLowerCase().includes(searchQuery) || recipe.description.toLowerCase().includes(searchQuery)) {
+            matchedRecipes.push(recipe);
+        }
+    })
 
-    if(result.length == 0){
+    if(matchedRecipes.length == 0){
         const notFound = document.createElement("p");
         notFound.classList.add('notFound');
         notFound.innerText = "Aucune recette ne correspond à votre recherche ...";
