@@ -1,3 +1,5 @@
+import { researchTags, searchInput } from "./input-bar.js";
+import { matchedRecipes } from "./input-bar.js";
 
 export const srcIng = document.getElementById('box-ing');
 export const srcApp = document.getElementById('box-app');
@@ -12,6 +14,11 @@ export const listAppliances = document.getElementById('list-app');
 export const listUstensils = document.getElementById('list-ust');
 export const listTri = document.querySelectorAll('.list-box');
 
+
+export const tagsBox = document.getElementById('search-tags');
+
+export const itemsList = document.querySelectorAll(".item-list");
+export var selectedTags = [];
 
 srcBox.forEach((src) => {
     src.addEventListener("click", function(){
@@ -64,4 +71,49 @@ srcBox.forEach((src) => {
         }
         
     })
-})
+});
+
+function Tags(id, info) {
+    this.list = id;
+    this.name = info;
+}
+
+export function tagSelection(){
+    
+
+    listTri.forEach((list) => {
+        list.addEventListener("click", function(event){
+
+            switch(list.id){
+                case 'list-ing' :
+                    const newTag = document.createElement("div");
+                    newTag.classList.add("ing-tags","box-tags");
+                    const name = document.createElement("label");
+                    name.innerText = event.target.innerText;
+                    const closeTag = document.createElement("img");
+                    closeTag.setAttribute("src","assets/close.svg");
+                    closeTag.classList.add("close-tags");
+                    newTag.appendChild(name);
+                    newTag.appendChild(closeTag);
+                    tagsBox.appendChild(newTag);
+
+                    const tags = new Tags("ing", event.target.innerText);
+                    selectedTags.push(tags);
+
+                    
+                    console.log(selectedTags);
+                    
+                    // listIngredients.removeChild(event.target);
+                    // console.log(event.target);
+
+                    searchInput(matchedRecipes);
+                    break;
+
+            }
+        })
+    })
+    
+    
+}
+
+
