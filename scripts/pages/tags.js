@@ -14,11 +14,38 @@ export const listAppliances = document.getElementById('list-app');
 export const listUstensils = document.getElementById('list-ust');
 export const listTri = document.querySelectorAll('.list-box');
 
+// const itemList = document.querySelectorAll('.item-list');
+
 
 export const tagsBox = document.getElementById('search-tags');
 
-export const itemsList = document.querySelectorAll(".item-list");
+export var matchedTagsRecipes = [];
 export var selectedTags = [];
+
+inputIngredient.addEventListener('keyup', function(){
+    var inputNb = inputIngredient.value.length;
+    let searchQuery = inputIngredient.value.toLowerCase();
+
+    if(inputNb >= 3){
+        listIngredients.childNodes.forEach(child => {
+            if(child.innerText.includes(searchQuery)){
+                child.classList.add('tags-used');
+            }else{
+                child.classList.remove('tags-used');
+            }
+        })
+
+    }else{
+        listIngredients.childNodes.forEach(child => {
+            
+            child.classList.remove('tags-used');
+            
+        })
+    }
+})
+
+
+
 
 srcBox.forEach((src) => {
     src.addEventListener("click", function(){
@@ -73,41 +100,148 @@ srcBox.forEach((src) => {
     })
 });
 
-function Tags(id, info) {
-    this.list = id;
-    this.name = info;
+function closeTagsEvent(){
+    const closeTags = document.querySelectorAll('.close-tags');
+    console.log(selectedTags);
+    closeTags.forEach((btn) => {
+        btn.addEventListener("click", function(){
+    
+            let itemToDel = btn.previousSibling.innerText;
+            console.log(itemToDel);
+
+            let index = selectedTags.indexOf(itemToDel);
+            console.log(index);
+
+
+            selectedTags.splice(index,1);
+            
+            console.log(selectedTags);
+
+            listIngredients.childNodes.forEach(child => {
+                if(child.innerText == itemToDel){
+                    child.classList.remove('tags-used');
+                }
+            })
+
+            listAppliances.childNodes.forEach(child => {
+                if(child.innerText == itemToDel){
+                    child.classList.remove('tags-used');
+                }
+            })
+
+            listUstensils.childNodes.forEach(child => {
+                if(child.innerText == itemToDel){
+                    child.classList.remove('tags-used');
+                }
+            })
+
+            tagsBox.childNodes.forEach(child => {
+                if(child.innerText == itemToDel){
+                    tagsBox.removeChild(child);
+                }
+            })
+
+            researchTags(matchedRecipes);
+        })
+    })
 }
 
-export function tagSelection(){
-    
 
+
+
+class Tags {
+    constructor(id, info) {
+        this.type = id;
+        this.name = info;
+    }
+}
+
+export function tagSelection(recipes){
+    console.log(recipes);
+
+    if (matchedRecipes.length < 1){
+        recipes.forEach((recipe) => {
+            matchedRecipes.push(recipe);
+        })
+    }
+
+    console.log(matchedRecipes);
     listTri.forEach((list) => {
         list.addEventListener("click", function(event){
+            const newTag = document.createElement("div");
+            const name = document.createElement("label");
+            name.innerText = event.target.innerText;
+            const closeTag = document.createElement("img");
+            closeTag.setAttribute("src","assets/close.svg");
+            closeTag.classList.add("close-tags");
 
             switch(list.id){
                 case 'list-ing' :
-                    const newTag = document.createElement("div");
+                    
                     newTag.classList.add("ing-tags","box-tags");
-                    const name = document.createElement("label");
-                    name.innerText = event.target.innerText;
-                    const closeTag = document.createElement("img");
-                    closeTag.setAttribute("src","assets/close.svg");
-                    closeTag.classList.add("close-tags");
+                    
                     newTag.appendChild(name);
                     newTag.appendChild(closeTag);
                     tagsBox.appendChild(newTag);
 
-                    const tags = new Tags("ing", event.target.innerText);
+                    var tags = new Tags("ing", event.target.innerText);
                     selectedTags.push(tags);
-
                     
-                    console.log(selectedTags);
                     
-                    // listIngredients.removeChild(event.target);
-                    // console.log(event.target);
+                    researchTags(matchedRecipes);
 
-                    searchInput(matchedRecipes);
-                    break;
+                    closeTagsEvent();
+
+                    listIngredients.childNodes.forEach(child => {
+                        if(child.innerText == event.target.innerText){
+                            child.classList.add('tags-used');
+                        }
+                    })
+                break;
+
+                case 'list-app' :
+                    newTag.classList.add("app-tags","box-tags");
+                    
+                    newTag.appendChild(name);
+                    newTag.appendChild(closeTag);
+                    tagsBox.appendChild(newTag);
+
+                    var tags = new Tags("app", event.target.innerText);
+                    selectedTags.push(tags);
+                    
+                    
+                    researchTags(matchedRecipes);
+
+                    closeTagsEvent();
+
+                    listAppliances.childNodes.forEach(child => {
+                        if(child.innerText == event.target.innerText){
+                            child.classList.add('tags-used');
+                        }
+                    })
+                break;
+
+                case 'list-ust' :
+                    newTag.classList.add("ust-tags","box-tags");
+                    
+                    newTag.appendChild(name);
+                    newTag.appendChild(closeTag);
+                    tagsBox.appendChild(newTag);
+
+                    var tags = new Tags("ust", event.target.innerText);
+                    selectedTags.push(tags);
+                    
+                    
+                    researchTags(matchedRecipes);
+
+                    closeTagsEvent();
+
+                    listUstensils.childNodes.forEach(child => {
+                        if(child.innerText == event.target.innerText){
+                            child.classList.add('tags-used');
+                        }
+                    })
+                break;
 
             }
         })

@@ -91,6 +91,13 @@ main {
     background-color: #3282F7;
 }
 
+.app-tags{
+    background-color: #68D9A4;
+}
+
+.ust-tags{
+    background-color: #ED6454;
+}
 
 #search-selector {
     margin: 15px 0 25px 0;
@@ -180,7 +187,9 @@ main {
     filter: brightness(70%);
 }
 
-
+.tags-used {
+    display: none;
+}
 
 /* Recipe-section */
 

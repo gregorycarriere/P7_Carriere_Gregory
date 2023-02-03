@@ -1,8 +1,8 @@
 import { displayRecipes, recipeSection, recipesData} from "./index.js";
 import {getIngredients, getAppliances, getUstensils, setIngredientsList, setApplianceList, setUstensilsList} from "./index.js";
 import {inputIngredient, inputAppliances, inputUstensils, listIngredients, listAppliances, listUstensils, srcIng, srcApp, srcUst} from "./tags.js";
-import { tagSelection } from "./tags.js";
-import { itemsList, tagsBox, selectedTags } from "./tags.js";
+import { tagSelection, matchedTagsRecipes } from "./tags.js";
+import { tagsBox, selectedTags } from "./tags.js";
 
 
 
@@ -32,13 +32,11 @@ export function searchInput(recipes) {
     console.log(recipes);
     console.log(matchedRecipes);
 
-    if(matchedRecipes.length === 0){
-        researchTags(recipes);
-    }else{
-        researchTags(matchedRecipes);
-    }
-    
-
+    // if(matchedRecipes.length === 0){
+    //     researchTags(recipes);
+    // }else{
+    //     researchTags(matchedRecipes);
+    // }
     
 
     if(matchedRecipes.length === 0 || recipes.length == matchedRecipes.length){
@@ -53,33 +51,45 @@ export function searchInput(recipes) {
         getAllList(matchedRecipes);
     }
 
-    
+    return matchedRecipes;
 }
 
-export function researchTags(UpdatesList){
-    console.log(UpdatesList);
+export function researchTags(recipes){
+    console.log(recipes);
     console.log(selectedTags);
-        if(selectedTags.length > 0 ){
-            selectedTags.forEach((tag) => {
-                switch(tag.list){
-                    case 'ing': 
-                        console.log("test");
-                        UpdatesList.filter((recipe) => {
-                            if(recipe.ingredients.find(object => object.ingredient.toLowerCase().includes(tag.name))){
-                                if(matchedRecipes.includes(recipe) === false){
-                                    matchedRecipes.push(recipe);
-                                }
-                            }
-                        });
-                        displayRecipes(matchedRecipes);
-                        getAllList(matchedRecipes);
-                        break;
+    // if(matchedRecipes.length != 0){
+    //     matchedRecipes.splice(0, matchedRecipes.length);
+    // }
+    if(selectedTags.length > 0 ){
+        selectedTags.forEach(tag => {
+            recipes.filter(recipe => {
+                if((tag.type === "ing" && recipe.ingredients.some(object => object.ingredient.toLowerCase().includes(tag.name.toLowerCase())) ||
+                tag.type === "app" && recipe.appliance.toLowerCase() === tag.name.toLowerCase() ||
+                tag.type === "ust" && recipe.ustensils.some(ust => ust.toLowerCase() === tag.name.toLowerCase())) && 
+                matchedTagsRecipes.includes(recipe) !== true){
+
+                    matchedTagsRecipes.push(recipe);
+                    
                 }
-            })
-        }
+                
+            });
+        });
+        
+
+        displayRecipes(matchedTagsRecipes);
+        getAllList(matchedTagsRecipes);
+        
+        
+    }else{
+        matchedTagsRecipes.splice(0,matchedTagsRecipes.length);
+        displayRecipes(recipes);
+        getAllList(recipes);
+    }
 
     
 }
+
+
 
 function getAllList(CurrData){
     getIngredients(CurrData);

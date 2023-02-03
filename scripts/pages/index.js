@@ -1,5 +1,5 @@
 import recipeFactory from "../factories/recipes.js";
-import { tagSelection } from "./tags.js";
+import { tagSelection} from "./tags.js";
 
 import {inputIngredient, inputAppliances, inputUstensils, listIngredients, listAppliances, listUstensils, srcIng, srcApp, srcUst} from "./tags.js";
 
@@ -110,7 +110,7 @@ async function start() {
 
 function init() {
     
-    
+    console.log(recipesData);
 
     getIngredients(recipesData);
     getAppliances(recipesData);
@@ -122,9 +122,9 @@ function init() {
 
     displayRecipes(recipesData);
 
-    
 
-    tagSelection();
+    tagSelection(recipesData);
+    
 }
 
 start();
