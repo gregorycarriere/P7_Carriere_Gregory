@@ -191,6 +191,10 @@ main {
     display: none;
 }
 
+.hide-tags {
+    display: none;
+}
+
 /* Recipe-section */
 
 #recipes-list {

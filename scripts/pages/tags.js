@@ -1,5 +1,5 @@
 import { researchTags, searchInput } from "./input-bar.js";
-import { matchedRecipes } from "./input-bar.js";
+// import { matchedRecipes } from "./input-bar.js";
 
 export const srcIng = document.getElementById('box-ing');
 export const srcApp = document.getElementById('box-app');
@@ -20,29 +20,41 @@ export const listTri = document.querySelectorAll('.list-box');
 export const tagsBox = document.getElementById('search-tags');
 
 export var matchedTagsRecipes = [];
-export var selectedTags = [];
+export var selectedTags = {'ing':[], 'app':[], 'ust':[]}
 
 inputIngredient.addEventListener('keyup', function(){
     var inputNb = inputIngredient.value.length;
     let searchQuery = inputIngredient.value.toLowerCase();
 
-    if(inputNb >= 3){
+    if(inputNb > 0){
         listIngredients.childNodes.forEach(child => {
-            if(child.innerText.includes(searchQuery)){
-                child.classList.add('tags-used');
+            if(!child.innerText.includes(searchQuery)){
+                child.classList.add('hide-tags');
             }else{
-                child.classList.remove('tags-used');
+                child.classList.remove('hide-tags');
             }
         })
 
     }else{
-        listIngredients.childNodes.forEach(child => {
-            
-            child.classList.remove('tags-used');
-            
-        })
+        child.classList.remove('hide-tags');
     }
+    // else{
+    //     listIngredients.childNodes.forEach(child => {
+            
+    //         child.classList.remove('tags-used');
+
+    //         // selectedTags.forEach(tag => {
+    //         //     if(child.innerText === tag.name){
+                    
+    //         //     }
+    //         // })
+            
+    //     })
+    // }
+
+    
 })
+
 
 
 
@@ -100,20 +112,36 @@ srcBox.forEach((src) => {
     })
 });
 
-function closeTagsEvent(){
+function closeTagsEvent(recipes){
     const closeTags = document.querySelectorAll('.close-tags');
-    console.log(selectedTags);
     closeTags.forEach((btn) => {
         btn.addEventListener("click", function(){
     
             let itemToDel = btn.previousSibling.innerText;
-            console.log(itemToDel);
 
-            let index = selectedTags.indexOf(itemToDel);
-            console.log(index);
+            if(btn.parentElement.getAttribute("class").includes("ing")){
+                let index = selectedTags.ing.indexOf(itemToDel);
+                if(index >-1){
+                    selectedTags.ing.splice(index,1);
+                    console.log(selectedTags.ing);
+                }
+            }
+            
+            if(btn.parentElement.getAttribute("class").includes("app")){
+                let index = selectedTags.app.indexOf(itemToDel);
+                if(index >-1){
+                    selectedTags.app.splice(index,1);
+                    console.log(selectedTags.app);
+                }
+            }
 
-
-            selectedTags.splice(index,1);
+            if(btn.parentElement.getAttribute("class").includes("ust")){
+                let index = selectedTags.ust.indexOf(itemToDel);
+                if(index >-1){
+                    selectedTags.ust.splice(index,1);
+                    console.log(selectedTags.ust);
+                }
+            }
             
             console.log(selectedTags);
 
@@ -141,31 +169,15 @@ function closeTagsEvent(){
                 }
             })
 
-            researchTags(matchedRecipes);
+            researchTags(recipes);
         })
     })
 }
 
 
 
-
-class Tags {
-    constructor(id, info) {
-        this.type = id;
-        this.name = info;
-    }
-}
-
 export function tagSelection(recipes){
-    console.log(recipes);
 
-    if (matchedRecipes.length < 1){
-        recipes.forEach((recipe) => {
-            matchedRecipes.push(recipe);
-        })
-    }
-
-    console.log(matchedRecipes);
     listTri.forEach((list) => {
         list.addEventListener("click", function(event){
             const newTag = document.createElement("div");
@@ -184,13 +196,10 @@ export function tagSelection(recipes){
                     newTag.appendChild(closeTag);
                     tagsBox.appendChild(newTag);
 
-                    var tags = new Tags("ing", event.target.innerText);
-                    selectedTags.push(tags);
-                    
-                    
-                    researchTags(matchedRecipes);
+                    selectedTags.ing.push(event.target.innerText);
 
-                    closeTagsEvent();
+                    researchTags(recipes);
+                    closeTagsEvent(recipes);
 
                     listIngredients.childNodes.forEach(child => {
                         if(child.innerText == event.target.innerText){
@@ -206,13 +215,10 @@ export function tagSelection(recipes){
                     newTag.appendChild(closeTag);
                     tagsBox.appendChild(newTag);
 
-                    var tags = new Tags("app", event.target.innerText);
-                    selectedTags.push(tags);
-                    
-                    
-                    researchTags(matchedRecipes);
+                    selectedTags.app.push(event.target.innerText);
 
-                    closeTagsEvent();
+                    researchTags(recipes);
+                    closeTagsEvent(recipes);
 
                     listAppliances.childNodes.forEach(child => {
                         if(child.innerText == event.target.innerText){
@@ -228,13 +234,10 @@ export function tagSelection(recipes){
                     newTag.appendChild(closeTag);
                     tagsBox.appendChild(newTag);
 
-                    var tags = new Tags("ust", event.target.innerText);
-                    selectedTags.push(tags);
-                    
-                    
-                    researchTags(matchedRecipes);
+                    selectedTags.ust.push(event.target.innerText);
 
-                    closeTagsEvent();
+                    researchTags(recipes);
+                    closeTagsEvent(recipes);
 
                     listUstensils.childNodes.forEach(child => {
                         if(child.innerText == event.target.innerText){
@@ -247,7 +250,7 @@ export function tagSelection(recipes){
         })
     })
     
-    
+    return selectedTags;
 }
 
 

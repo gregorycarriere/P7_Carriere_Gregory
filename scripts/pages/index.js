@@ -27,6 +27,7 @@ function getIngredients(data) {
     })
 
     ingredientsDataList = stockTempI.filter( (ele,pos)=>stockTempI.indexOf(ele) == pos);
+    ingredientsDataList.sort();
 }
 
 function getAppliances(data) {
@@ -37,6 +38,7 @@ function getAppliances(data) {
     })
 
     appliancesDataList = stockTempA.filter( (ele,pos)=>stockTempA.indexOf(ele) == pos);
+    appliancesDataList.sort();
 }
 
 function getUstensils(data) {
@@ -49,6 +51,7 @@ function getUstensils(data) {
     })
 
     ustensilsDataList = stockTempU.filter( (ele,pos)=>stockTempU.indexOf(ele) == pos);
+    ustensilsDataList.sort();
 }
 
 function setIngredientsList(){
