@@ -113,7 +113,6 @@ async function start() {
 
 function init() {
     
-    console.log(recipesData);
 
     getIngredients(recipesData);
     getAppliances(recipesData);

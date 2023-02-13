@@ -31,8 +31,7 @@ export function searchInput(recipes) {
         recipeSection.innerHTML = "";
         recipeSection.appendChild(notFound);
     }else{
-        displayRecipes(matchedRecipes);
-        getAllList(matchedRecipes);
+        researchTags(recipesData);
     }
 
     return matchedRecipes;
@@ -41,9 +40,8 @@ export function searchInput(recipes) {
 export function researchTags(recipes){
     
     let matchedTagsRecipes = [];
-    
+
     if(selectedTags.ing.length > 0 || selectedTags.app.length > 0 || selectedTags.ust.length > 0){
-        console.log(matchedTagsRecipes);
         for(let i=0; selectedTags.ing.length > i; i++){
             if(matchedTagsRecipes.length <= 0){ 
                 recipes.forEach(recipe => {
@@ -58,7 +56,6 @@ export function researchTags(recipes){
             }else{
 
                 matchedTagsRecipes = matchedTagsRecipes.filter(matched => matched.ingredients.some(object => object.ingredient.toLowerCase().includes(selectedTags.ing[i].toLowerCase())));
-                console.log(matchedTagsRecipes);
 
                 displayRecipes(matchedTagsRecipes);
                 getAllList(matchedTagsRecipes);
@@ -109,8 +106,6 @@ export function researchTags(recipes){
     }
     
 }
-
-
 
 function getAllList(CurrData){
     getIngredients(CurrData);
