@@ -23,16 +23,7 @@ export function searchInput(recipes) {
         }
     })
 
-    if(matchedRecipes.length === 0){
-        const notFound = document.createElement("p");
-        notFound.classList.add('notFound');
-        notFound.innerText = "Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc.";
-
-        recipeSection.innerHTML = "";
-        recipeSection.appendChild(notFound);
-    }else{
-        researchTags(recipesData);
-    }
+    researchTags(recipesData);
 
     return matchedRecipes;
 }
@@ -103,6 +94,15 @@ export function researchTags(recipes){
     }else{
         displayRecipes(recipes);
         getAllList(recipes);
+    }
+
+    if(((selectedTags.ing.length + selectedTags.app.length + selectedTags.ust.length) == 0) && recipes.length == 0){
+        const notFound = document.createElement("p");
+        notFound.classList.add('notFound');
+        notFound.innerText = "Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+
+        recipeSection.innerHTML = "";
+        recipeSection.appendChild(notFound);
     }
     
 }
