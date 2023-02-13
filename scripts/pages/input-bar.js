@@ -1,8 +1,6 @@
 import { displayRecipes, recipeSection, recipesData} from "./index.js";
 import {getIngredients, getAppliances, getUstensils, setIngredientsList, setApplianceList, setUstensilsList} from "./index.js";
-import {inputIngredient, inputAppliances, inputUstensils, listIngredients, listAppliances, listUstensils, srcIng, srcApp, srcUst} from "./tags.js";
-import { tagSelection, matchedTagsRecipes } from "./tags.js";
-import { tagsBox, selectedTags } from "./tags.js";
+import {selectedTags } from "./tags.js";
 
 
 

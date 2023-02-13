@@ -1,5 +1,4 @@
 import { researchTags, searchInput } from "./input-bar.js";
-// import { matchedRecipes } from "./input-bar.js";
 
 export const srcIng = document.getElementById('box-ing');
 export const srcApp = document.getElementById('box-app');

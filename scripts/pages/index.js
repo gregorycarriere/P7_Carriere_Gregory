@@ -1,7 +1,7 @@
 import recipeFactory from "../factories/recipes.js";
 import { tagSelection} from "./tags.js";
 
-import {inputIngredient, inputAppliances, inputUstensils, listIngredients, listAppliances, listUstensils, srcIng, srcApp, srcUst} from "./tags.js";
+import {listIngredients, listAppliances, listUstensils} from "./tags.js";
 
 
 export { getIngredients, getAppliances, getUstensils, setIngredientsList, setApplianceList, setUstensilsList};
