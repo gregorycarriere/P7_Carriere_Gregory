@@ -1,0 +1,22 @@
+{
+  "name": "p7_carriere_gregory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregorycarriere/P7_Carriere_Gregory.git"
+  },
+  "author": "Gregory Carriere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregorycarriere/P7_Carriere_Gregory/issues"
+  },
+  "homepage": "https://github.com/gregorycarriere/P7_Carriere_Gregory#readme",
+  "devDependencies": {
+    "eslint": "^8.34.0"
+  }
+}
