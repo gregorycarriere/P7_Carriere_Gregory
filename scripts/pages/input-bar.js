@@ -12,14 +12,16 @@ export function searchInput(recipes) {
     recipeSection.innerHTML = "";
     let matchedRecipes = [];
 
-    recipes.filter((recipe) => {
+    for (let i = 0; i < recipes.length; i++) {
 
-        if(recipe.ingredients.find(object => object.ingredient.toLowerCase().includes(searchQuery)) || recipe.name.toLowerCase().includes(searchQuery) || recipe.description.toLowerCase().includes(searchQuery)) {
-            if(matchedRecipes.includes(recipe) === false){
-                matchedRecipes.push(recipe);
-            }
+        if (
+            recipes[i].name.toLowerCase().includes(searchQuery) ||
+            recipes[i].description.toLowerCase().includes(searchQuery) ||
+            recipes[i].ingredients.find(object => object.ingredient.toLowerCase().includes(searchQuery))
+        ) {
+            matchedRecipes.push(recipes[i]);
         }
-    })
+    }
 
     researchTags(recipesData);
 
