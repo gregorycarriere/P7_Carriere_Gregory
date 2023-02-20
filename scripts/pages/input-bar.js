@@ -21,7 +21,11 @@ export function searchInput(recipes) {
         }
     })
 
-    researchTags(recipesData);
+    if(matchedRecipes.length > 0){
+        researchTags(matchedRecipes);
+    }else{
+        researchTags(recipesData);
+    }
 
     return matchedRecipes;
 }
