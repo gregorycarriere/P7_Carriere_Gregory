@@ -89,6 +89,15 @@ export function researchTags(recipes){
             }
         }
 
+        if(matchedTagsRecipes.length == 0){
+            const notFound = document.createElement("p");
+            notFound.classList.add('notFound');
+            notFound.innerText = "Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+
+            recipeSection.innerHTML = "";
+            recipeSection.appendChild(notFound);
+        }
+
     }else{
         displayRecipes(recipes);
         getAllList(recipes);
